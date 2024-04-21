@@ -18,7 +18,7 @@ pipeline {
                 // Tools: JUnit (for unit tests), Selenium or Postman (for integration tests)
                 script {
                     // Placeholder for running unit tests
-                    // Example: sh 'mvn test'
+                    echo 'mvn test'
                     
                     // Placeholder for running integration tests
                     echo 'newman run my-collection.json'
@@ -28,13 +28,13 @@ pipeline {
                 success {
                     emailext subject: 'Unit and Integration Tests Success',
                               body: 'Unit and integration tests have passed successfully',
-                              to: 'farhantajish@gmail.com',
+                              mail to: 'farhantajish@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
                 failure {
                     emailext subject: 'Unit and Integration Tests Failure',
                               body: 'Unit and integration tests have failed',
-                              to: 'farhantajish@gmail.com',
+                              mail to: 'farhantajish@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
             }
@@ -62,13 +62,13 @@ pipeline {
                 success {
                     emailext subject: 'Security Scan Success',
                               body: 'Security scan has passed successfully',
-                              to: 'farhantajish@gmail.com',
+                              mail to: 'farhantajish@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
                 failure {
                     emailext subject: 'Security Scan Failure',
                               body: 'Security scan has failed',
-                              to: 'farhantajish@gmail.com',
+                              mail to: 'farhantajish@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
             }
