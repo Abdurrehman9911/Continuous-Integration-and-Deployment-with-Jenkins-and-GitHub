@@ -4,18 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Build the code using Maven
-                // Tool: Maven
+                // Building the code using Maven
+                // Tool I have used: Maven
                 script {
-                    // Placeholder for Maven build command
                     echo 'mvn clean package'
                 }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                // Run unit tests and integration tests
-                // Tools: JUnit (for unit tests), Selenium or Postman (for integration tests)
+                // Runing the unit tests and integration tests
+                // Tools I have used: JUnit (for unit tests), Selenium or Postman (for integration tests)
                 script {
                     // Placeholder for running unit tests
                     echo 'mvn test'
@@ -27,13 +26,13 @@ pipeline {
             post {
                 success {
                     emailext subject: 'Unit and Integration Tests Success',
-                              body: 'Unit and integration tests have passed successfully',
+                              body: 'Unit tests have passed successfully',
                               to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
                 failure {
                     emailext subject: 'Unit and Integration Tests Failure',
-                              body: 'Unit and integration tests have failed',
+                              body: 'Unit tests have failed',
                               to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
@@ -41,8 +40,8 @@ pipeline {
         }
         stage('Code Analysis') {
             steps {
-                // Integrate code analysis tool to analyze code quality
-                // Tool: SonarQube
+                // Integrating code analysis tool to analyze code quality
+                // Tool I have used: SonarQube
                 script {
                     // Placeholder for SonarQube analysis
                     echo 'sonar-scanner'
@@ -51,10 +50,9 @@ pipeline {
         }
         stage('Security Scan') {
             steps {
-                // Perform security scan on code
-                // Tool: OWASP Dependency-Check
+                // Performing security scan on code
+                // Tool I have used: OWASP Dependency-Check
                 script {
-                    // Placeholder for OWASP Dependency-Check scan
                     echo 'mvn dependency-check:check'
                 }
             }
@@ -73,34 +71,32 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Staging') {
+        stage('Deploying to Staging') {
             steps {
-                // Deploy application to staging server
-                // Tool: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
+                // Deploying application to staging server
+                // Tool I have used: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
                 script {
                     // Placeholder for deployment script or command
                     echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Staging --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
                 }
             }
         }
-        stage('Integration Tests on Staging') {
+        stage('Integration Test on Staging') {
             steps {
-                // Run integration tests on staging environment
-                // Tool: Selenium, Postman, or custom scripts
+                // Running integration tests on staging environment
+                // Tool I have used: Selenium, Postman, or custom scripts
                 script {
-                    // Placeholder for integration tests on staging
                     echo 'selenium-runner --config=my-config.json'
                 }
             }
         }
-        stage('Deploy to Production') {
+        stage('Deploying to Production') {
             steps {
-                // Deploy application to production server
-                // Tool: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
+                // Deploying application to production server
+                // Tool I have used: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
                 script {
-                    // Placeholder for deployment script or command
                     echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
-                    echo 'machod' 
+
                }
             }
         }
