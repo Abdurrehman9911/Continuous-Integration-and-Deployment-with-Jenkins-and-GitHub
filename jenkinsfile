@@ -100,7 +100,8 @@ pipeline {
                 script {
                     // Placeholder for deployment script or command
                     echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
-                }
+                    echo 'machod' 
+               }
             }
         }
     }
