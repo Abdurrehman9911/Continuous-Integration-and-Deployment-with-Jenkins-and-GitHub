@@ -28,13 +28,13 @@ pipeline {
                 success {
                     emailext subject: 'Unit and Integration Tests Success',
                               body: 'Unit and integration tests have passed successfully',
-                              mail to: 'farhantajish@gmail.com',
+                              to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
                 failure {
                     emailext subject: 'Unit and Integration Tests Failure',
                               body: 'Unit and integration tests have failed',
-                              mail to: 'farhantajish@gmail.com',
+                              mail to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
             }
@@ -62,13 +62,13 @@ pipeline {
                 success {
                     emailext subject: 'Security Scan Success',
                               body: 'Security scan has passed successfully',
-                              mail to: 'farhantajish@gmail.com',
+                              mail to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
                 failure {
                     emailext subject: 'Security Scan Failure',
                               body: 'Security scan has failed',
-                              mail to: 'farhantajish@gmail.com',
+                              mail to: 'rehman.abdur2001@gmail.com',
                               attachmentsPattern: 'jenkins.log'
                 }
             }
