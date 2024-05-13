@@ -4,23 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Building the code using Maven
-                // Tool: Maven
                 script {
-                    // Placeholder for Maven build command
+                    echo 'Building the code using Maven'
                     echo 'mvn clean package'
                 }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                // Running the unit tests and integration tests
-                // Tools: JUnit (for unit tests), Selenium or Postman (for integration tests)
                 script {
-                    // Placeholder for running unit tests
+                    echo 'Running unit tests'
                     echo 'mvn'
                     
-                    // Placeholder for running integration tests
+                    echo 'Running integration tests'
                     echo 'newman run my-collection.json'
                 }
             }
@@ -29,32 +25,28 @@ pipeline {
                     emailext subject: 'Unit and Integration Tests Success',
                               body: 'Unit and integration tests have passed successfully',
                               to: 'rehman.abdur2001@gmail.com',
-                              attachmentsPattern: 'jenkinstool.log'
+                              attachmentsPattern: '**/jenkinstool.log' // Adjust the pattern to match the actual path
                 }
                 failure {
                     emailext subject: 'Unit and Integration Tests Failure',
                               body: 'Unit and integration tests have failed',
                               to: 'rehman.abdur2001@gmail.com',
-                              attachmentsPattern: 'jenkinstool.log'
+                              attachmentsPattern: '**/jenkinstool.log' // Adjust the pattern to match the actual path
                 }
             }
         }
         stage('Code Analysis') {
             steps {
-                // Integrate code analysis tool to analyze code quality
-                // Tool: SonarQube
                 script {
-                    // Placeholder for SonarQube analysis
+                    echo 'Integrating code analysis tool to analyze code quality'
                     echo 'sonar-scanner'
                 }
             }
         }
         stage('Security Scan') {
             steps {
-                // Perform security scan on code
-                // Tool: OWASP Dependency-Check
                 script {
-                    // Placeholder for OWASP Dependency-Check scan
+                    echo 'Performing security scan on code'
                     echo 'mvn dependency-check:check'
                 }
             }
@@ -63,45 +55,40 @@ pipeline {
                     emailext subject: 'Security Scan Success',
                               body: 'Security scan has passed successfully',
                               to: 'rehman.abdur2001@gmail.com',
-                              attachmentsPattern: 'jenkinstool.log'
+                              attachmentsPattern: '**/jenkinstool.log' // Adjust the pattern to match the actual path
                 }
                 failure {
                     emailext subject: 'Security Scan Failure',
                               body: 'Security scan has failed',
                               to: 'rehman.abdur2001@gmail.com',
-                              attachmentsPattern: 'jenkinstool.log'
+                              attachmentsPattern: '**/jenkinstool.log' // Adjust the pattern to match the actual path
                 }
             }
         }
         stage('Deploy to Staging') {
             steps {
-                // Deploy application to staging server
-                // Tool: Jenkins Pipeline's deployment scripts and AWS CodeDeploy
                 script {
-                    // Placeholder for deployment script or command
+                    echo 'Deploying application to staging server'
                     echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Staging --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
                 }
             }
         }
         stage('Integration Tests on Staging') {
             steps {
-                // Run integration tests on staging environment
-                // Tool: Selenium, Postman, or custom scripts
                 script {
-                    // Placeholder for integration tests on staging
+                    echo 'Running integration tests on staging environment'
                     echo 'selenium-runner --config=my-config.json'
-                    echo 'Application sucessfullness'
-                    echo ' Application sucessfull again'
+                    echo 'Application successfulness'
+                    echo 'Application successful again'
                 }
             }
         }
         stage('Deploy to Production') {
             steps {
-                // Deploy application to production server
-                // Tool: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
                 script {
-                    // Placeholder for deployment script or command
-                    echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
+                    echo 'Deploying application to production server'
+                    def deployOutput = sh(script: 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip', returnStdout: true)
+                    writeFile file: 'deployment_log.txt', text: deployOutput
                 }
             }
         }
