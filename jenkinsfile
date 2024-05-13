@@ -4,19 +4,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                // Building the code using Maven
+                // Tool: Maven
                 script {
-                    echo 'Building the code using Maven'
+                    // Placeholder for Maven build command
                     echo 'mvn clean package'
                 }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
+                // Running the unit tests and integration tests
+                // Tools: JUnit (for unit tests), Selenium or Postman (for integration tests)
                 script {
-                    echo 'Running unit tests'
+                    // Placeholder for running unit tests
                     echo 'mvn'
                     
-                    echo 'Running integration tests'
+                    // Placeholder for running integration tests
                     echo 'newman run my-collection.json'
                 }
             }
@@ -37,16 +41,20 @@ pipeline {
         }
         stage('Code Analysis') {
             steps {
+                // Integrate code analysis tool to analyze code quality
+                // Tool: SonarQube
                 script {
-                    echo 'Integrating code analysis tool to analyze code quality'
+                    // Placeholder for SonarQube analysis
                     echo 'sonar-scanner'
                 }
             }
         }
         stage('Security Scan') {
             steps {
+                // Perform security scan on code
+                // Tool: OWASP Dependency-Check
                 script {
-                    echo 'Performing security scan on code'
+                    // Placeholder for OWASP Dependency-Check scan
                     echo 'mvn dependency-check:check'
                 }
             }
@@ -67,28 +75,33 @@ pipeline {
         }
         stage('Deploy to Staging') {
             steps {
+                // Deploy application to staging server
+                // Tool: Jenkins Pipeline's deployment scripts and AWS CodeDeploy
                 script {
-                    echo 'Deploying application to staging server'
+                    // Placeholder for deployment script or command
                     echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Staging --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
                 }
             }
         }
         stage('Integration Tests on Staging') {
             steps {
+                // Run integration tests on staging environment
+                // Tool: Selenium, Postman, or custom scripts
                 script {
-                    echo 'Running integration tests on staging environment'
+                    // Placeholder for integration tests on staging
                     echo 'selenium-runner --config=my-config.json'
-                    echo 'Application successfulness'
-                    echo 'Application successful again'
+                    echo 'Application sucessfullness'
+                    echo ' Application sucessfull again'
                 }
             }
         }
         stage('Deploy to Production') {
             steps {
+                // Deploy application to production server
+                // Tool: Jenkins Pipeline's deployment scripts, AWS CodeDeploy
                 script {
-                    echo 'Deploying application to production server'
-                    def deployOutput = sh(script: 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip', returnStdout: true)
-                    writeFile file: 'deployment_log.txt', text: deployOutput
+                    // Placeholder for deployment script or command
+                    echo 'aws deploy create-deployment --application-name MyApp --deployment-group-name Production --s3-location bucket=my-bucket,key=my-app.zip,bundleType=zip'
                 }
             }
         }
